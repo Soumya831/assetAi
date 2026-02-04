@@ -1,0 +1,23 @@
+<div class="sidebar">
+  <div class="logo-container">
+    <div class="logo">
+      <span class="logo-icon">&#9729;</span>
+      <div class="logo-text">
+        <span class="logo-title">apachecloudstack</span>
+        <span class="logo-subtitle">open source cloud computing</span>
+      </div>
+    </div>
+  </div>
+  
+  <nav class="nav-menu">
+    @for (item of menuItems; track item.name) {
+      <div class="nav-item" [class.active]="item.active">
+        <mat-icon>{{item.icon}}</mat-icon>
+        <span class="nav-text">{{item.name}}</span>
+        @if (item.hasSubmenu) {
+          <mat-icon class="arrow">keyboard_arrow_down</mat-icon>
+        }
+      </div>
+    }
+  </nav>
+</div>

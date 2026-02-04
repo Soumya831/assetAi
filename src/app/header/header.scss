@@ -1,0 +1,124 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  height: 56px;
+  min-height: 56px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  mat-icon {
+    color: #666;
+  }
+}
+
+.view-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  mat-icon {
+    color: #666;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  span {
+    font-size: 14px;
+    color: #333;
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.create-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  &:hover {
+    background-color: #43a047;
+  }
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  mat-icon {
+    color: #666;
+  }
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #1e88e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  mat-icon {
+    color: white;
+    font-size: 20px;
+  }
+}
+
+.user-name {
+  font-size: 14px;
+  color: #333;
+}

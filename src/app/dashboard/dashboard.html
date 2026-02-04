@@ -1,0 +1,148 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <div class="zone-selector">
+      <mat-icon>public</mat-icon>
+      <span>All Zones</span>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </div>
+    <button class="fetch-btn">
+      <mat-icon>refresh</mat-icon>
+      <span>Fetch latest</span>
+    </button>
+  </div>
+
+  <div class="dashboard-content">
+    <div class="top-row">
+      <mat-card class="card infrastructure-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>business</mat-icon>
+          <mat-card-title>Infrastructure</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="infra-grid">
+            @for (item of infraItems; track item.label) {
+              <div class="infra-item">
+                <mat-icon>{{item.icon}}</mat-icon>
+                <span class="count">{{item.count}}</span>
+                <span class="label">{{item.label}}</span>
+              </div>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card compute-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>computer</mat-icon>
+          <mat-card-title>Compute</mat-card-title>
+          <button class="capacity-btn">Used Capacity</button>
+        </mat-card-header>
+        <mat-card-content>
+          @for (resource of computeResources; track resource.label) {
+            <div class="resource-item">
+              <div class="resource-header">
+                <span class="resource-label">{{resource.label}}</span>
+                <span class="resource-percentage">{{resource.percentage | number:'1.2-2'}}%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" [style.width.%]="resource.percentage > 100 ? 100 : resource.percentage" [style.background-color]="resource.color"></div>
+              </div>
+              <span class="resource-detail">
+                @if (resource.unit) {
+                  {{resource.used}} {{resource.unit}} Used | {{resource.total}} {{resource.unit}} Total
+                } @else {
+                  {{resource.used}} Used | {{resource.total}} Total
+                }
+              </span>
+            </div>
+          }
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card storage-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>storage</mat-icon>
+          <mat-card-title>Storage</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          @for (item of storageItems; track item.label) {
+            <div class="storage-item">
+              <div class="storage-header">
+                <span class="storage-label">{{item.label}}</span>
+                <span class="storage-percentage">{{item.percentage | number:'1.2-2'}}%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" [style.width.%]="item.percentage > 100 ? 100 : item.percentage" [class.warning]="item.percentage > 50"></div>
+              </div>
+              <span class="storage-detail">{{item.used}} {{item.unit}} Allocated | {{item.total}} {{item.unit}} Total</span>
+            </div>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="bottom-row">
+      <mat-card class="card network-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>wifi</mat-icon>
+          <mat-card-title>Network</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          @for (item of networkItems; track item.label) {
+            <div class="network-item">
+              <div class="network-header">
+                <span class="network-label">{{item.label}}</span>
+                <span class="network-percentage">{{item.percentage | number:'1.2-2'}}%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" [style.width.%]="item.percentage"></div>
+              </div>
+              <span class="network-detail">{{item.allocated}} Allocated | {{item.total}} Total</span>
+            </div>
+          }
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card alerts-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="alert-icon">warning</mat-icon>
+          <mat-card-title>Alerts</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          @for (alert of alerts; track alert.time + alert.type) {
+            <div class="alert-item">
+              <div class="alert-header">
+                <span class="alert-indicator"></span>
+                <span class="alert-time">{{alert.time}}</span>
+                <a href="#" class="alert-type">{{alert.type}}</a>
+              </div>
+              <p class="alert-message">{{alert.message}}</p>
+            </div>
+          }
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card events-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>event</mat-icon>
+          <mat-card-title>Events</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          @for (event of events; track event.time + event.action) {
+            <div class="event-item">
+              <div class="event-header">
+                <span class="event-time">{{event.time}}</span>
+                <a href="#" class="event-action">{{event.action}}</a>
+              </div>
+              <div class="event-user">
+                <mat-icon>{{event.icon || 'person'}}</mat-icon>
+                <a href="#">{{event.user}}</a>
+              </div>
+              <p class="event-description">{{event.description}}</p>
+            </div>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
