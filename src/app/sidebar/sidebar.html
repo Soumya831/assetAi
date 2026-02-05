@@ -8,13 +8,13 @@
       </div>
     </div>
   </div>
-  
+
   <nav class="nav-menu">
     @for (item of menuItems; track item.name) {
       @if (item.hasSubmenu) {
         <div class="nav-item" [class.active]="item.expanded" (click)="toggleSubmenu(item)">
-          <mat-icon>{{item.icon}}</mat-icon>
-          <span class="nav-text">{{item.name}}</span>
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span class="nav-text">{{ item.name }}</span>
           <mat-icon class="arrow" [class.rotated]="item.expanded">keyboard_arrow_down</mat-icon>
         </div>
         @if (item.expanded && item.subItems) {
@@ -22,15 +22,15 @@
             @for (subItem of item.subItems; track subItem.name) {
               <a class="submenu-item" [routerLink]="subItem.route" routerLinkActive="active">
                 <mat-icon>radio_button_unchecked</mat-icon>
-                <span>{{subItem.name}}</span>
+                <span>{{ subItem.name }}</span>
               </a>
             }
           </div>
         }
       } @else {
         <a class="nav-item" [routerLink]="item.route" routerLinkActive="active">
-          <mat-icon>{{item.icon}}</mat-icon>
-          <span class="nav-text">{{item.name}}</span>
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span class="nav-text">{{ item.name }}</span>
         </a>
       }
     }
