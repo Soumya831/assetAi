@@ -1,0 +1,76 @@
+<div class="instances-page">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <mat-icon>home</mat-icon>
+      <span>/</span>
+      <span>Instances</span>
+      <mat-icon class="info-icon">info</mat-icon>
+    </div>
+    <div class="header-actions">
+      <button class="refresh-btn">
+        <mat-icon>refresh</mat-icon>
+        <span>Refresh</span>
+      </button>
+      <span class="filter-label">All</span>
+      <mat-icon class="filter-icon">filter_list</mat-icon>
+      <button class="toggle-btn">Metrics</button>
+      <button class="toggle-btn active">Projects</button>
+      <button class="add-btn">
+        <span>Add Instance +</span>
+      </button>
+      <mat-icon class="filter-icon">filter_list</mat-icon>
+      <div class="search-box">
+        <span>Search</span>
+        <mat-icon>search</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="instances-table">
+      <thead>
+        <tr>
+          <th class="checkbox-col">
+            <mat-checkbox></mat-checkbox>
+          </th>
+          <th>Name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>State <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Internal name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>IP Address <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Arch <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Host</th>
+          <th>Account <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Zone</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (instance of instances; track instance.id) {
+          <tr>
+            <td class="checkbox-col">
+              <mat-checkbox></mat-checkbox>
+            </td>
+            <td class="name-cell">
+              <mat-icon [style.color]="instance.iconColor">{{ instance.icon }}</mat-icon>
+              <a href="#" class="instance-name">{{ instance.name }}</a>
+            </td>
+            <td>
+              <span
+                class="state-badge"
+                [class.running]="instance.state === 'Running'"
+                [class.stopped]="instance.state === 'Stopped'"
+              >
+                {{ instance.state }}
+              </span>
+            </td>
+            <td>{{ instance.internalName }}</td>
+            <td class="ip-cell">{{ instance.ipAddress }}</td>
+            <td>{{ instance.arch }}</td>
+            <td class="host-cell">{{ instance.host }}</td>
+            <td class="account-cell">{{ instance.account }}</td>
+            <td class="zone-cell">{{ instance.zone }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
