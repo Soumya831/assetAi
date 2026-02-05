@@ -57,20 +57,28 @@ interface Event {
 })
 export class Dashboard {
   infraItems: InfraItem[] = [
-    { icon: 'router', count: 3, label: 'Virtual Routers' },
-    { icon: 'memory', count: 6, label: 'System VMs' },
-    { icon: 'settings_ethernet', count: 6, label: 'Virtual Routers' },
+    { icon: 'grid_view', count: 3, label: 'Pods' },
+    { icon: 'account_tree', count: 6, label: 'Cluster' },
+    { icon: 'dns', count: 6, label: 'Hosts' },
+    { icon: 'dns', count: 17, label: 'Hosts in alert state' },
+    { icon: 'storage', count: 3, label: 'Primary Storage' },
+    { icon: 'bolt', count: 6, label: 'System VMs' },
+    { icon: 'share', count: 6, label: 'Virtual Routers' },
     { icon: 'cloud', count: 17, label: 'Instances' },
   ];
 
   computeResources: ResourceUsage[] = [
-    { label: 'CPU cores', used: 26, total: 20, unit: '', percentage: 130, color: '#ff9800' },
+    { label: 'Memory', used: 10, total: 20, unit: '', percentage: 50, color: '#4caf50' },
+    { label: 'CPU', used: 2.1, total: 20, unit: '', percentage: 11, color: '#4caf50' },
+    { label: 'CPU cores', used: 26, total: 20, unit: '', percentage: 130, color: '#4caf50' },
     { label: 'GPU', used: 2, total: 100, unit: '', percentage: 2, color: '#4caf50' },
   ];
 
   storageItems: StorageItem[] = [
+    { label: 'Primary Storage', used: 0.0, total: 0.0, unit: 'GiB', percentage: 0 },
+    { label: 'Primary Storage allocated', used: 48.0, total: 60.0, unit: 'GiB', percentage: 80 },
     { label: 'Secondary Storage', used: 0.0, total: 0.0, unit: 'GiB', percentage: 0 },
-    { label: 'Backup Storage', used: 48.0, total: 60.0, unit: 'GiB', percentage: 80 },
+    { label: 'Backup Storage', used: 30.0, total: 60.0, unit: 'GiB', percentage: 50 },
   ];
 
   networkItems: NetworkItem[] = [
