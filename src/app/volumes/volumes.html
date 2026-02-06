@@ -1,0 +1,226 @@
+<div class="volumes-page">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <mat-icon>home</mat-icon>
+      <span class="separator">/</span>
+      <span>Volumes</span>
+      <mat-icon class="info-icon">info</mat-icon>
+    </div>
+    <div class="header-actions">
+      <button class="refresh-btn">
+        <span>C</span>
+        <span>Refresh</span>
+      </button>
+      <span class="filter-label">User</span>
+      <mat-icon class="filter-icon">filter_list</mat-icon>
+      <button class="toggle-btn">Metrics</button>
+      <button class="toggle-btn active">Projects</button>
+      <button class="create-btn" (click)="openCreateDialog()">
+        <span>Create Volume +</span>
+      </button>
+      <mat-icon class="action-icon">language</mat-icon>
+      <mat-icon class="action-icon">link</mat-icon>
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="volumes-table">
+      <thead>
+        <tr>
+          <th class="checkbox-col">
+            <mat-checkbox></mat-checkbox>
+          </th>
+          <th>Name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>State <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Size <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Type <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Instance name</th>
+          <th>Instance state</th>
+          <th>Storage <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Account <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Zone <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (volume of volumes; track volume.id) {
+          <tr>
+            <td class="checkbox-col">
+              <mat-checkbox></mat-checkbox>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ volume.name }}</a>
+              <span class="more-icon">:</span>
+            </td>
+            <td>
+              <span class="state-badge ready">
+                {{ volume.state }}
+              </span>
+            </td>
+            <td>{{ volume.size }}</td>
+            <td>{{ volume.type }}</td>
+            <td>
+              <a href="#" class="link-text">{{ volume.instanceName }}</a>
+            </td>
+            <td>
+              <span
+                class="state-badge"
+                [class.running]="volume.instanceState === 'Running'"
+                [class.stopped]="volume.instanceState === 'Stopped'"
+              >
+                {{ volume.instanceState }}
+              </span>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ volume.storage }}</a>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ volume.account }}</a>
+            </td>
+            <td>{{ volume.zone }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <span class="pagination-info"
+      >Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} items</span
+    >
+    <span class="pagination-controls">
+      <button class="page-btn" disabled>&lt;</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn" disabled>&gt;</button>
+    </span>
+    <span class="page-size">{{ itemsPerPage }} / page</span>
+    <mat-icon class="page-size-arrow">expand_more</mat-icon>
+  </div>
+</div>
+
+@if (showCreateDialog) {
+  <div class="dialog-overlay" (click)="closeCreateDialog()">
+    <div class="dialog-container" (click)="$event.stopPropagation()">
+      <div class="dialog-header">
+        <h2>Create Volume <mat-icon class="dialog-info-icon">info</mat-icon></h2>
+        <button class="dialog-close" (click)="closeCreateDialog()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="dialog-body">
+        <div class="form-group">
+          <label class="form-label">Owner type</label>
+          <div class="form-select-wrapper">
+            <select class="form-select" [(ngModel)]="newVolume.ownerType">
+              @for (type of ownerTypes; track type) {
+                <option [value]="type">{{ type }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"><span class="required">*</span> Domain</label>
+          <div class="form-select-wrapper">
+            <select class="form-select" [(ngModel)]="newVolume.domain">
+              @for (domain of domains; track domain) {
+                <option [value]="domain">{{ domain }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"><span class="required">*</span> Account</label>
+          <div class="form-select-wrapper">
+            <mat-icon class="field-icon">person</mat-icon>
+            <select class="form-select with-icon" [(ngModel)]="newVolume.account">
+              @for (account of accounts; track account) {
+                <option [value]="account">{{ account }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Name
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <input
+            type="text"
+            class="form-input"
+            placeholder="The name of the disk volume"
+            [(ngModel)]="newVolume.name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Zone
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <div class="form-select-wrapper">
+            <mat-icon class="field-icon">public</mat-icon>
+            <select class="form-select with-icon" [(ngModel)]="newVolume.zone">
+              @for (zone of zones; track zone) {
+                <option [value]="zone">{{ zone }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Disk Offering
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <div class="form-select-wrapper">
+            <select class="form-select" [(ngModel)]="newVolume.diskOffering">
+              @for (offering of diskOfferings; track offering) {
+                <option [value]="offering">{{ offering }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Size
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Arbitrary volume size"
+            [(ngModel)]="newVolume.size"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >Attach to Instance <mat-icon class="label-info">info</mat-icon></label
+          >
+          <label class="toggle-switch">
+            <input type="checkbox" [(ngModel)]="newVolume.attachToInstance" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="cancel-btn" (click)="closeCreateDialog()">Cancel</button>
+        <button class="ok-btn" (click)="createVolume()">OK</button>
+      </div>
+    </div>
+  </div>
+}

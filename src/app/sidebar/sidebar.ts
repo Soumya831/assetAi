@@ -43,7 +43,7 @@ export class Sidebar {
       hasSubmenu: true,
       expanded: false,
       subItems: [
-        { name: 'Volumes', route: '/compute/instances' },
+        { name: 'Volumes', route: '/storage/volumes' },
         { name: 'Volume Snapshots', route: '/compute/snapshots' },
         { name: 'Backups', route: '/compute/kubernetes' },
         { name: 'Shared FileSystems', route: '/compute/autoscaling' },

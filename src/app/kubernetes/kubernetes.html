@@ -14,7 +14,7 @@
       <span class="filter-label">All</span>
       <mat-icon class="filter-icon">filter_list</mat-icon>
       <button class="toggle-btn active">Projects</button>
-      <button class="create-cluster-btn">
+      <button class="create-cluster-btn" (click)="openCreateDialog()">
         <span>Create Kubernetes Cluster +</span>
       </button>
       <div class="search-box">
@@ -99,4 +99,184 @@
     <span class="page-size">{{ itemsPerPage }} / page</span>
     <mat-icon class="page-size-arrow">expand_more</mat-icon>
   </div>
+
+  <!-- <div class="footer">
+    <p class="footer-text">
+      This is a community-hosted Apache CloudStack Simulator-based Demo/QA environment. The
+      management server database is reset daily. Join our project mailing list:
+      <a href="https://cloudstack.apache.org/mailing-lists.html"
+        >https://cloudstack.apache.org/mailing-lists.html</a
+      >
+    </p>
+    <p class="footer-version">
+      CloudStack 4.21.0.0
+      <mat-icon class="footer-icon">info</mat-icon>
+      New version available: 4.22.0.0
+      <mat-icon class="footer-icon">info</mat-icon>
+      Ask a question or Report an issue
+    </p>
+  </div> -->
 </div>
+
+@if (showCreateDialog) {
+  <div class="dialog-overlay" (click)="closeCreateDialog()">
+    <div class="dialog-container" (click)="$event.stopPropagation()">
+      <div class="dialog-header">
+        <h2>Create Kubernetes Cluster <mat-icon class="dialog-info-icon">info</mat-icon></h2>
+        <button class="dialog-close" (click)="closeCreateDialog()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="dialog-body">
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Name
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Name for the Kubernetes cluster"
+            [(ngModel)]="newCluster.name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description <mat-icon class="label-info">info</mat-icon></label>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Description for the Kubernetes cluster"
+            [(ngModel)]="newCluster.description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Zone
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <div class="form-select-wrapper">
+            <mat-icon class="zone-icon">public</mat-icon>
+            <select class="form-select with-icon" [(ngModel)]="newCluster.zone">
+              @for (zone of zones; track zone) {
+                <option [value]="zone">{{ zone }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Hypervisor <mat-icon class="label-info">info</mat-icon></label>
+          <input
+            type="text"
+            class="form-input disabled"
+            placeholder="The hypervisor on which the CKS cluster is to be deployed. This is required if the ..."
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Kubernetes version
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <div class="form-select-wrapper">
+            <select class="form-select" [(ngModel)]="newCluster.kubernetesVersion">
+              @for (version of kubernetesVersions; track version) {
+                <option [value]="version">{{ version }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Compute Offering
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <div class="form-select-wrapper">
+            <select class="form-select" [(ngModel)]="newCluster.computeOffering">
+              @for (offering of computeOfferings; track offering) {
+                <option [value]="offering">{{ offering }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >Node root disk size (in GB) <mat-icon class="label-info">info</mat-icon></label
+          >
+          <input type="number" class="form-input" [(ngModel)]="newCluster.nodeRootDiskSize" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Network <mat-icon class="label-info">info</mat-icon></label>
+          <div class="form-select-wrapper">
+            <select class="form-select" [(ngModel)]="newCluster.network">
+              <option value=""></option>
+              @for (net of networks; track net) {
+                <option [value]="net">{{ net }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">HA enabled</label>
+          <div class="toggle-switch" (click)="newCluster.haEnabled = !newCluster.haEnabled">
+            <div class="toggle-track" [class.active]="newCluster.haEnabled">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            ><span class="required">*</span> Cluster size (Worker nodes)
+            <mat-icon class="label-info">info</mat-icon></label
+          >
+          <input type="number" class="form-input" [(ngModel)]="newCluster.clusterSize" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >SSH key pair <mat-icon class="label-info">info</mat-icon></label
+          >
+          <div class="form-select-wrapper">
+            <select class="form-select" [(ngModel)]="newCluster.sshKeyPair">
+              <option value=""></option>
+              @for (key of sshKeyPairs; track key) {
+                <option [value]="key">{{ key }}</option>
+              }
+            </select>
+            <mat-icon class="select-arrow">expand_more</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Show advanced settings</label>
+          <div
+            class="toggle-switch"
+            (click)="newCluster.showAdvancedSettings = !newCluster.showAdvancedSettings"
+          >
+            <div class="toggle-track" [class.active]="newCluster.showAdvancedSettings">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn-cancel" (click)="closeCreateDialog()">Cancel</button>
+        <button class="btn-ok" (click)="onCreateCluster()">OK</button>
+      </div>
+    </div>
+  </div>
+}
