@@ -41,6 +41,7 @@ export class Sidebar {
       name: 'Storage',
       icon: 'storage',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Volumes', route: '/compute/instances' },
         { name: 'Volume Snapshots', route: '/compute/snapshots' },
@@ -52,6 +53,7 @@ export class Sidebar {
       name: 'Network',
       icon: 'wifi',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Guest Networks', route: '/compute/instances' },
         { name: 'VPC', route: '/compute/snapshots' },
@@ -73,6 +75,7 @@ export class Sidebar {
       name: 'Images',
       icon: 'image',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Templates', route: '/compute/instances' },
         { name: 'ISOs', route: '/compute/snapshots' },
@@ -108,6 +111,7 @@ export class Sidebar {
       name: 'Infrastructure',
       icon: 'business',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Summary', route: '/compute/instances' },
         { name: 'Zones', route: '/compute/snapshots' },
@@ -130,6 +134,7 @@ export class Sidebar {
       name: 'Service Offerings',
       icon: 'settings',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Compute Offerings', route: '/compute/instances' },
         { name: 'System Offerings', route: '/compute/snapshots' },
@@ -143,6 +148,7 @@ export class Sidebar {
       name: 'Configuration',
       icon: 'tune',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Global Settings', route: '/compute/instances' },
         { name: 'LDAP Configuration', route: '/compute/snapshots' },
@@ -165,6 +171,7 @@ export class Sidebar {
       name: 'Tools',
       icon: 'build',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Comments', route: '/compute/kubernetes' },
         { name: 'Usage', route: '/compute/autoscaling' },
@@ -177,6 +184,7 @@ export class Sidebar {
       name: 'Quota',
       icon: 'pie_chart',
       hasSubmenu: true,
+      expanded: false,
       subItems: [
         { name: 'Summary', route: '/compute/kubernetes' },
         { name: 'Tariff', route: '/compute/autoscaling' },

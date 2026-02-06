@@ -1,0 +1,94 @@
+<div class="snapshots-page">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <mat-icon>home</mat-icon>
+      <span class="separator">/</span>
+      <span>Instance Snapshots</span>
+      <mat-icon class="info-icon">info</mat-icon>
+    </div>
+    <div class="header-actions">
+      <button class="refresh-btn">
+        <span>C</span>
+        <span>Refresh</span>
+      </button>
+      <button class="toggle-btn">Projects</button>
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="snapshots-table">
+      <thead>
+        <tr>
+          <th class="checkbox-col">
+            <mat-checkbox></mat-checkbox>
+          </th>
+          <th>Display name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>State <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Type <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Current <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Parent <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Created <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Account <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Domain</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (snapshot of snapshots; track snapshot.id) {
+          <tr>
+            <td class="checkbox-col">
+              <mat-checkbox></mat-checkbox>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.displayName }}</a>
+              <span class="more-icon">:</span>
+            </td>
+            <td>
+              <span class="state-badge ready">
+                {{ snapshot.state }}
+              </span>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.name }}</a>
+            </td>
+            <td>{{ snapshot.type }}</td>
+            <td>
+              @if (snapshot.current) {
+                <span class="indicator-dot green"></span>
+              }
+            </td>
+            <td>
+              @if (snapshot.parent) {
+                <span class="indicator-dot green"></span>
+              }
+            </td>
+            <td>{{ snapshot.created }}</td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.account }}</a>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.domain }}</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <span class="pagination-info"
+      >Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} items</span
+    >
+    <span class="pagination-controls">
+      <button class="page-btn" disabled>&lt;</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn" disabled>&gt;</button>
+    </span>
+    <span class="page-size">{{ itemsPerPage }} / page</span>
+    <mat-icon class="page-size-arrow">expand_more</mat-icon>
+  </div>
+</div>

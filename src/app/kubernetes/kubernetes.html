@@ -1,0 +1,102 @@
+<div class="kubernetes-page">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <mat-icon>home</mat-icon>
+      <span class="separator">/</span>
+      <span>Kubernetes</span>
+      <mat-icon class="info-icon">info</mat-icon>
+    </div>
+    <div class="header-actions">
+      <button class="refresh-btn">
+        <span>C</span>
+        <span>Refresh</span>
+      </button>
+      <span class="filter-label">All</span>
+      <mat-icon class="filter-icon">filter_list</mat-icon>
+      <button class="toggle-btn active">Projects</button>
+      <button class="create-cluster-btn">
+        <span>Create Kubernetes Cluster +</span>
+      </button>
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="kubernetes-table">
+      <thead>
+        <tr>
+          <th class="checkbox-col">
+            <mat-checkbox></mat-checkbox>
+          </th>
+          <th>Name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>State <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Auto scaling <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Cluster type <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Size <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>CPU cores <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Memory <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Kubernetes version <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Account <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Zone</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (cluster of clusters; track cluster.id) {
+          <tr>
+            <td class="checkbox-col">
+              <mat-checkbox></mat-checkbox>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ cluster.name }}</a>
+              <span class="more-icon">:</span>
+            </td>
+            <td>
+              <span
+                class="state-badge"
+                [class.running]="cluster.state === 'Running'"
+                [class.error]="cluster.state === 'Error'"
+                [class.stopped]="cluster.state === 'Stopped'"
+              >
+                {{ cluster.state }}
+              </span>
+            </td>
+            <td>
+              <span
+                class="autoscaling-badge"
+                [class.enabled]="cluster.autoScaling === 'Enabled'"
+                [class.disabled]="cluster.autoScaling === 'Disabled'"
+              >
+                {{ cluster.autoScaling }}
+              </span>
+            </td>
+            <td>{{ cluster.clusterType }}</td>
+            <td>{{ cluster.size }}</td>
+            <td>{{ cluster.cpuCores }}</td>
+            <td>{{ cluster.memory }}</td>
+            <td>{{ cluster.kubernetesVersion }}</td>
+            <td>
+              <a href="#" class="link-text">{{ cluster.account }}</a>
+            </td>
+            <td>{{ cluster.zone }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <span class="pagination-info"
+      >Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} items</span
+    >
+    <span class="pagination-controls">
+      <button class="page-btn" disabled>&lt;</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn" disabled>&gt;</button>
+    </span>
+    <span class="page-size">{{ itemsPerPage }} / page</span>
+    <mat-icon class="page-size-arrow">expand_more</mat-icon>
+  </div>
+</div>
