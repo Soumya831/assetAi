@@ -44,7 +44,7 @@ export class Sidebar {
       expanded: false,
       subItems: [
         { name: 'Volumes', route: '/storage/volumes' },
-        { name: 'Volume Snapshots', route: '/compute/snapshots' },
+        { name: 'Volume Snapshots', route: 'storage/volume-snapshots' },
         { name: 'Backups', route: '/storage/backups' },
         { name: 'Shared FileSystems', route: '/compute/autoscaling' },
       ],

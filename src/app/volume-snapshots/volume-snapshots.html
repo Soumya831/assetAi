@@ -1,0 +1,90 @@
+<div class="volume-snapshots-page">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <mat-icon>home</mat-icon>
+      <span class="separator">/</span>
+      <span>Backups</span>
+    </div>
+    <div class="header-actions">
+      <button class="refresh-btn">
+        <span>C</span>
+        <span>Refresh</span>
+      </button>
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="snapshots-table">
+      <thead>
+        <tr>
+          <th class="checkbox-col">
+            <mat-checkbox></mat-checkbox>
+          </th>
+          <th>Name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Status <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Size <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Virtual Size <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Instance name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Backup Offering Name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Interval type <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Type <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Created <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Account <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Domain</th>
+          <th>Zone <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (snapshot of snapshots; track snapshot.id) {
+          <tr>
+            <td class="checkbox-col">
+              <mat-checkbox></mat-checkbox>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.name }}</a>
+              <span class="more-icon">:</span>
+            </td>
+            <td>
+              <span class="state-badge backed-up">
+                {{ snapshot.status }}
+              </span>
+            </td>
+            <td>{{ snapshot.size }}</td>
+            <td>{{ snapshot.virtualSize }}</td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.instanceName }}</a>
+            </td>
+            <td>{{ snapshot.backupOfferingName }}</td>
+            <td>{{ snapshot.intervalType }}</td>
+            <td>{{ snapshot.type }}</td>
+            <td>{{ snapshot.created }}</td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.account }}</a>
+            </td>
+            <td>{{ snapshot.domain }}</td>
+            <td>
+              <a href="#" class="link-text">{{ snapshot.zone }}</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <span class="pagination-info"
+      >Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} items</span
+    >
+    <span class="pagination-controls">
+      <button class="page-btn" disabled>&lt;</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn" disabled>&gt;</button>
+    </span>
+    <span class="page-size">{{ itemsPerPage }} / page</span>
+    <mat-icon class="page-size-arrow">expand_more</mat-icon>
+  </div>
+</div>

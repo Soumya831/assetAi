@@ -1,8 +1,9 @@
 .sidebar {
   width: 200px;
   min-width: 200px;
-  background: linear-gradient(180deg, #0d5c93 0%, #0a4a75 100%);
-  color: white;
+  // background: linear-gradient(180deg, #0d5c93 0%, #b1d2e8 100%);
+  background: whitesmoke;
+  color: black;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -63,7 +64,8 @@
   transition: background-color 0.2s;
   gap: 12px;
   text-decoration: none;
-  color: white;
+  // color: white;
+  color: black;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);

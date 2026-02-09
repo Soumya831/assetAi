@@ -6,6 +6,7 @@ import { Kubernetes } from './kubernetes/kubernetes';
 import { Volumes } from './volumes/volumes';
 import { GuestNetworks } from './guest-networks/guest-networks';
 import { Backups } from './backups/backups';
+import { VolumeSnapshots } from './volume-snapshots/volume-snapshots';
 
 export const routes: Routes = [
   { path: '', component: Dashboard },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'compute/kubernetes', component: Kubernetes },
   { path: 'storage/volumes', component: Volumes },
   { path: 'storage/backups', component: Backups },
+  { path: 'storage/volume-snapshots', component: VolumeSnapshots },
   { path: 'network/guest-networks', component: GuestNetworks },
 
   { path: '**', redirectTo: '' },
