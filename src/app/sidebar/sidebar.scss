@@ -25,30 +25,8 @@
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo-icon {
-  font-size: 24px;
-  color: #4fc3f7;
-}
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.logo-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #4fc3f7;
-}
-
-.logo-subtitle {
-  font-size: 9px;
-  opacity: 0.7;
+  width: 11rem;
+  height: 3rem;
 }
 
 .nav-menu {
@@ -66,6 +44,8 @@
   text-decoration: none;
   // color: white;
   color: black;
+  border-radius: 8px;
+  margin: 0px 5px;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
