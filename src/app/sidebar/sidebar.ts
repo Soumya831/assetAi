@@ -45,7 +45,7 @@ export class Sidebar {
       subItems: [
         { name: 'Volumes', route: '/storage/volumes' },
         { name: 'Volume Snapshots', route: '/compute/snapshots' },
-        { name: 'Backups', route: '/compute/kubernetes' },
+        { name: 'Backups', route: '/storage/backups' },
         { name: 'Shared FileSystems', route: '/compute/autoscaling' },
       ],
     },
@@ -55,7 +55,7 @@ export class Sidebar {
       hasSubmenu: true,
       expanded: false,
       subItems: [
-        { name: 'Guest Networks', route: '/compute/instances' },
+        { name: 'Guest Networks', route: 'network/guest-networks' },
         { name: 'VPC', route: '/compute/snapshots' },
         { name: 'Security Groups', route: '/compute/kubernetes' },
         { name: 'VNF Appliances', route: '/compute/autoscaling' },

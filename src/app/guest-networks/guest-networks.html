@@ -1,0 +1,102 @@
+<div class="guest-networks-page">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <mat-icon>home</mat-icon>
+      <span class="separator">/</span>
+      <span>Guest Networks</span>
+      <mat-icon class="info-icon">info</mat-icon>
+    </div>
+    <div class="header-actions">
+      <button class="refresh-btn">
+        <span>C</span>
+        <span>Refresh</span>
+      </button>
+      <span class="filter-label">All</span>
+      <mat-icon class="filter-icon">filter_list</mat-icon>
+      <button class="toggle-btn active">Projects</button>
+      <button class="create-btn">
+        <span>Add Network +</span>
+      </button>
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="networks-table">
+      <thead>
+        <tr>
+          <th class="checkbox-col">
+            <mat-checkbox></mat-checkbox>
+          </th>
+          <th>Name <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>State <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Type <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>VPC <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>IPv4 CIDR <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>IPv6 CIDR <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Broadcast URI <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Domain <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Account <mat-icon class="sort-icon">unfold_more</mat-icon></th>
+          <th>Zone</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (network of networks; track network.id) {
+          <tr>
+            <td class="checkbox-col">
+              <mat-checkbox></mat-checkbox>
+            </td>
+            <td>
+              <a href="#" class="link-text">{{ network.name }}</a>
+              @if (network.hasAlert) {
+                <mat-icon class="alert-dot">circle</mat-icon>
+              }
+              <span class="more-icon">:</span>
+            </td>
+            <td>
+              <span
+                class="state-badge"
+                [class.setup]="network.state === 'Setup'"
+                [class.implemented]="network.state === 'Implemented'"
+              >
+                {{ network.state }}
+              </span>
+            </td>
+            <td>{{ network.type }}</td>
+            <td>
+              @if (network.vpc) {
+                <a href="#" class="link-text">{{ network.vpc }}</a>
+              }
+            </td>
+            <td>{{ network.ipv4Cidr }}</td>
+            <td>{{ network.ipv6Cidr }}</td>
+            <td>{{ network.broadcastUri }}</td>
+            <td>{{ network.domain }}</td>
+            <td>
+              @if (network.account) {
+                <a href="#" class="link-text">{{ network.account }}</a>
+              }
+            </td>
+            <td>{{ network.zone }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <span class="pagination-info"
+      >Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} items</span
+    >
+    <span class="pagination-controls">
+      <button class="page-btn" disabled>&lt;</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn" disabled>&gt;</button>
+    </span>
+    <span class="page-size">{{ itemsPerPage }} / page</span>
+    <mat-icon class="page-size-arrow">expand_more</mat-icon>
+  </div>
+</div>
