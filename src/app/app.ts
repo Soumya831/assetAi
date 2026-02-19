@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Header } from './header/header';
-import { Sidebar } from './sidebar/sidebar';
+import { Header } from './layout/header/header';
+import { Sidebar } from './layout/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',

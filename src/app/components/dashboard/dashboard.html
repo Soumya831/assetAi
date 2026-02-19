@@ -22,9 +22,9 @@
           <div class="infra-grid">
             @for (item of infraItems; track item.label) {
               <div class="infra-item">
-                <mat-icon>{{item.icon}}</mat-icon>
-                <span class="count">{{item.count}}</span>
-                <span class="label">{{item.label}}</span>
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <span class="count">{{ item.count }}</span>
+                <span class="label">{{ item.label }}</span>
               </div>
             }
           </div>
@@ -41,17 +41,24 @@
           @for (resource of computeResources; track resource.label) {
             <div class="resource-item">
               <div class="resource-header">
-                <span class="resource-label">{{resource.label}}</span>
-                <span class="resource-percentage">{{resource.percentage | number:'1.2-2'}}%</span>
+                <span class="resource-label">{{ resource.label }}</span>
+                <span class="resource-percentage"
+                  >{{ resource.percentage | number: '1.2-2' }}%</span
+                >
               </div>
               <div class="progress-container">
-                <div class="progress-bar" [style.width.%]="resource.percentage > 100 ? 100 : resource.percentage" [style.background-color]="resource.color"></div>
+                <div
+                  class="progress-bar"
+                  [style.width.%]="resource.percentage > 100 ? 100 : resource.percentage"
+                  [style.background-color]="resource.color"
+                ></div>
               </div>
               <span class="resource-detail">
                 @if (resource.unit) {
-                  {{resource.used}} {{resource.unit}} Used | {{resource.total}} {{resource.unit}} Total
+                  {{ resource.used }} {{ resource.unit }} Used | {{ resource.total }}
+                  {{ resource.unit }} Total
                 } @else {
-                  {{resource.used}} Used | {{resource.total}} Total
+                  {{ resource.used }} Used | {{ resource.total }} Total
                 }
               </span>
             </div>
@@ -68,13 +75,20 @@
           @for (item of storageItems; track item.label) {
             <div class="storage-item">
               <div class="storage-header">
-                <span class="storage-label">{{item.label}}</span>
-                <span class="storage-percentage">{{item.percentage | number:'1.2-2'}}%</span>
+                <span class="storage-label">{{ item.label }}</span>
+                <span class="storage-percentage">{{ item.percentage | number: '1.2-2' }}%</span>
               </div>
               <div class="progress-container">
-                <div class="progress-bar" [style.width.%]="item.percentage > 100 ? 100 : item.percentage" [class.warning]="item.percentage > 50"></div>
+                <div
+                  class="progress-bar"
+                  [style.width.%]="item.percentage > 100 ? 100 : item.percentage"
+                  [class.warning]="item.percentage > 50"
+                ></div>
               </div>
-              <span class="storage-detail">{{item.used}} {{item.unit}} Allocated | {{item.total}} {{item.unit}} Total</span>
+              <span class="storage-detail"
+                >{{ item.used }} {{ item.unit }} Allocated | {{ item.total }}
+                {{ item.unit }} Total</span
+              >
             </div>
           }
         </mat-card-content>
@@ -91,13 +105,15 @@
           @for (item of networkItems; track item.label) {
             <div class="network-item">
               <div class="network-header">
-                <span class="network-label">{{item.label}}</span>
-                <span class="network-percentage">{{item.percentage | number:'1.2-2'}}%</span>
+                <span class="network-label">{{ item.label }}</span>
+                <span class="network-percentage">{{ item.percentage | number: '1.2-2' }}%</span>
               </div>
               <div class="progress-container">
                 <div class="progress-bar" [style.width.%]="item.percentage"></div>
               </div>
-              <span class="network-detail">{{item.allocated}} Allocated | {{item.total}} Total</span>
+              <span class="network-detail"
+                >{{ item.allocated }} Allocated | {{ item.total }} Total</span
+              >
             </div>
           }
         </mat-card-content>
@@ -113,10 +129,10 @@
             <div class="alert-item">
               <div class="alert-header">
                 <span class="alert-indicator"></span>
-                <span class="alert-time">{{alert.time}}</span>
-                <a href="#" class="alert-type">{{alert.type}}</a>
+                <span class="alert-time">{{ alert.time }}</span>
+                <a href="#" class="alert-type">{{ alert.type }}</a>
               </div>
-              <p class="alert-message">{{alert.message}}</p>
+              <p class="alert-message">{{ alert.message }}</p>
             </div>
           }
         </mat-card-content>
@@ -131,14 +147,14 @@
           @for (event of events; track event.time + event.action) {
             <div class="event-item">
               <div class="event-header">
-                <span class="event-time">{{event.time}}</span>
-                <a href="#" class="event-action">{{event.action}}</a>
+                <span class="event-time">{{ event.time }}</span>
+                <a href="#" class="event-action">{{ event.action }}</a>
               </div>
               <div class="event-user">
-                <mat-icon>{{event.icon || 'person'}}</mat-icon>
-                <a href="#">{{event.user}}</a>
+                <mat-icon>{{ event.icon || 'person' }}</mat-icon>
+                <a href="#">{{ event.user }}</a>
               </div>
-              <p class="event-description">{{event.description}}</p>
+              <p class="event-description">{{ event.description }}</p>
             </div>
           }
         </mat-card-content>

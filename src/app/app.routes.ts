@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './dashboard/dashboard';
-import { Instances } from './instances/instances';
-import { InstanceSnapshots } from './instance-snapshots/instance-snapshots';
-import { Kubernetes } from './kubernetes/kubernetes';
-import { Volumes } from './volumes/volumes';
-import { GuestNetworks } from './guest-networks/guest-networks';
-import { Backups } from './backups/backups';
-import { VolumeSnapshots } from './volume-snapshots/volume-snapshots';
+import { Backups } from './components/backups/backups';
+import { Dashboard } from './components/dashboard/dashboard';
+import { GuestNetworks } from './components/guest-networks/guest-networks';
+import { InstanceSnapshots } from './components/instance-snapshots/instance-snapshots';
+import { Instances } from './components/instances/instances';
+import { Kubernetes } from './components/kubernetes/kubernetes';
+import { VolumeSnapshots } from './components/volume-snapshots/volume-snapshots';
+import { Volumes } from './components/volumes/volumes';
+
 
 export const routes: Routes = [
   { path: '', component: Dashboard },
